@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api/auth';
+const API_URL = process.env.REACT_APP_API_URL || 'https://velvetcoin-c0a8ddf747e7.herokuapp.com/api/auth';
 
 export const setAuthToken = (token) => {
   if (token) {
