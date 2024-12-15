@@ -25,6 +25,7 @@ import OrderDetails from './components/orders/OrderDetails';
 import VendorDashboard from './components/vendor/Dashboard';
 import VendorOrders from './components/vendor/OrderManagement';
 import VendorRegistration from './components/vendor/VendorRegistration';
+import axios from 'axios'
 
 const AppContent = () => {
   useAuth();
@@ -57,6 +58,7 @@ const AppContent = () => {
 };
 
 function App() {
+  axios.defaults.baseURL =process.env.REACT_APP_API_URL
   return (
     <Provider store={store}>
       <Router>
