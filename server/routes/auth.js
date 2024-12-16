@@ -137,6 +137,21 @@ router.post('/create-test-user', async (req, res) => {
   }
 });
 
+const verifyToken = (req, res, next) => {
+  const token = req.header('Authorization')?.replace('Bearer ', '');
+  if (!token) {
+    return res.status(401).json({ message: 'No token, authorization denied' });
+  }
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = decoded; // Attach decoded user data to the request object
+    next();
+  } catch (error) {
+    return res.status(401).json({ message: 'Token is not valid' });
+  }
+};
+
 router.get('/me', verifyToken, async (req, res) => {
   try {
     const user = await User.findById(req.user.userId).select('-password'); // Exclude password from response
