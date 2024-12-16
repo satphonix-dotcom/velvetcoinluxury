@@ -28,7 +28,9 @@ import VendorRegistration from './components/vendor/VendorRegistration';
 import axios from 'axios'
 
 const AppContent = () => {
-  useAuth();
+ const loading= useAuth();
+
+  if(loading) return 'Loading...'
 
   return (
     <Routes>
