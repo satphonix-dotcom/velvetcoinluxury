@@ -138,7 +138,7 @@ router.post('/create-test-user', async (req, res) => {
 });
 
 const verifyToken = (req, res, next) => {
-  const token = req.header('Authorization')?.replace('Bearer ', '');
+  const token = req.header('x-auth-token')
   if (!token) {
     return res.status(401).json({ message: 'No token, authorization denied' });
   }
