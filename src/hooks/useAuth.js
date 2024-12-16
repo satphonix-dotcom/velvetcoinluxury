@@ -5,6 +5,7 @@ import { getCurrentUser, setAuthToken } from '../services/authService';
 
 export const useAuth = () => {
   const dispatch = useDispatch();
+  const [loading,setLoading]=useState(true)
 
   useEffect(() => {
     const initializeAuth = async () => {
@@ -15,18 +16,23 @@ export const useAuth = () => {
         try {
           const userData = await getCurrentUser();
           if (userData) {
-            dispatch(loginSuccess({ user: userData, token }));
+            await dispatch(loginSuccess({ user: userData, token }));
           } else {
-            dispatch(loginFailure('Session expired'));
+            await dispatch(loginFailure('Session expired'));
           }
         } catch (error) {
-          dispatch(loginFailure(error.message));
+          await dispatch(loginFailure(error.message));
         }
       }
+
+      setLoading(false)
     };
 
     initializeAuth();
   }, [dispatch]);
+
+  return loading
+  
 };
 
 export default useAuth;
