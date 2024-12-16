@@ -6,7 +6,7 @@ export const processPayment = createAsyncThunk(
   async ({ orderId, paymentDetails }, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        'http://localhost:5000/api/payments/process',
+        '/api/payments/process',
         { orderId, paymentDetails },
         {
           headers: { 'x-auth-token': localStorage.getItem('token') }
@@ -24,7 +24,7 @@ export const checkPaymentStatus = createAsyncThunk(
   async (orderId, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/payments/${orderId}/status`,
+        `/api/payments/${orderId}/status`,
         {
           headers: { 'x-auth-token': localStorage.getItem('token') }
         }

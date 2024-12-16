@@ -11,7 +11,7 @@ const OrderConfirmation = () => {
   useEffect(() => {
     const fetchOrder = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/orders/${orderId}`, {
+        const response = await axios.get(`/api/orders/${orderId}`, {
           headers: { 'x-auth-token': localStorage.getItem('token') }
         });
         setOrder(response.data);

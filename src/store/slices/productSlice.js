@@ -5,7 +5,7 @@ export const fetchProducts = createAsyncThunk(
   'products/fetchProducts',
   async (params = {}, { rejectWithValue }) => {
     try {
-      const response = await axios.get('http://localhost:5000/api/products', { params });
+      const response = await axios.get('/api/products', { params });
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -17,7 +17,7 @@ export const fetchVendorProducts = createAsyncThunk(
   'products/fetchVendorProducts',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get('http://localhost:5000/api/products/vendor', {
+      const response = await axios.get('/api/products/vendor', {
         headers: { 'x-auth-token': localStorage.getItem('token') }
       });
       return response.data;
@@ -31,7 +31,7 @@ export const createProduct = createAsyncThunk(
   'products/createProduct',
   async (productData, { rejectWithValue }) => {
     try {
-      const response = await axios.post('http://localhost:5000/api/products', productData, {
+      const response = await axios.post('/api/products', productData, {
         headers: { 'x-auth-token': localStorage.getItem('token') }
       });
       return response.data;
@@ -45,7 +45,7 @@ export const updateProduct = createAsyncThunk(
   'products/updateProduct',
   async ({ id, data }, { rejectWithValue }) => {
     try {
-      const response = await axios.put(`http://localhost:5000/api/products/${id}`, data, {
+      const response = await axios.put(`/api/products/${id}`, data, {
         headers: { 'x-auth-token': localStorage.getItem('token') }
       });
       return response.data;
@@ -59,7 +59,7 @@ export const deleteProduct = createAsyncThunk(
   'products/deleteProduct',
   async (id, { rejectWithValue }) => {
     try {
-      await axios.delete(`http://localhost:5000/api/products/${id}`, {
+      await axios.delete(`/api/products/${id}`, {
         headers: { 'x-auth-token': localStorage.getItem('token') }
       });
       return id;

@@ -29,7 +29,7 @@ const Profile = () => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.put(
-        'http://localhost:5000/api/auth/profile',
+        '/api/auth/profile',
         formData,
         {
           headers: { 'x-auth-token': token }

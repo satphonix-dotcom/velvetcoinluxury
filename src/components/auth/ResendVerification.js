@@ -14,7 +14,7 @@ const ResendVerification = () => {
     setSuccess('');
 
     try {
-      await axios.post('http://localhost:5000/api/auth/resend-verification', { email });
+      await axios.post('/api/auth/resend-verification', { email });
       setSuccess('Verification email sent successfully');
       setStatus('success');
     } catch (error) {
